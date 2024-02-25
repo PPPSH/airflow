@@ -9,7 +9,7 @@ with DAG(
     schedule="10 0 * * *", # 분/시/일/월/요일
     
     start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
-    catchup=False, # 시작일부터 돌릴것이냐(누락본 일자 다 돌릴것이냐)
+    catchup=False # 시작일부터 돌릴것이냐(누락본 일자 다 돌릴것이냐)
     
 ) as dag:
     
@@ -19,7 +19,7 @@ with DAG(
     )
     
     t2_avocado = BashOperator(
-        tast_id ="t1_avocado",
+        tast_id ="t2_avocado",
         bash_command="/opt/airflow/plugins/shell/select_fruit.sh AVOCADO",
     )
     
