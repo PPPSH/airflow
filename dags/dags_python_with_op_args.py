@@ -8,7 +8,7 @@ from common.common_func import regist
 import random 
  
 with DAG(
-    dag_id="dags_python_operator", #airflow에서 보여지는 화면, 파일명이랑 DagID랑 일치하는게 좋음 
+    dag_id="dags_python_with_op_operator", #airflow에서 보여지는 화면, 파일명이랑 DagID랑 일치하는게 좋음 
     schedule="30 6 * * *", # 분/시/일/월/요일
     
     start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
