@@ -6,7 +6,7 @@ from airflow.operators.email import EmailOperator
 from airflow.decorators import task 
  
 with DAG(
-    dag_id="dags_email_operator", #airflow에서 보여지는 화면, 파일명이랑 DagID랑 일치하는게 좋음 
+    dag_id="dags_python_email_operator", #airflow에서 보여지는 화면, 파일명이랑 DagID랑 일치하는게 좋음 
     schedule="0 8 1 * *", # 분/시/일/월/요일
     
     start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
