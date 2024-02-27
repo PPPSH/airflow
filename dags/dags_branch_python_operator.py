@@ -2,9 +2,8 @@
 from airflow import DAG 
 import datetime
 import pendulum
-from airflow.operators.python import BranchPythonOperatora
 from airflow.operators.python import PythonOperator
-from airflow.models import Variable 
+from airflow.operators.python import BranchPythonOperator
 
 
 
@@ -24,7 +23,7 @@ with DAG(
         elif selected_item in ['B','C']:
             return ['task_b','task_c']
         
-    python_branch_task = BranchPythonOperatora(
+    python_branch_task = BranchPythonOperator(
         task_id = 'python_branch_task',
         python_callable=select_random
     )
