@@ -20,7 +20,7 @@ with DAG (
     def empty_2():
         print('empty_2')
     
-    empty_1 >> Label('1과 2사이') >> empty_2
+    empty_1() >> Label('1과 2사이') >> empty_2()
     
     empty_3 = EmptyOperator(
         task_id ='empty_3'
