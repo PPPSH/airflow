@@ -41,6 +41,6 @@ with DAG(
         op_kwargs={'selected':'c'}
     )
     
-    select_random() >> ['task_a','task_b','task_c']
+    select_random() >> [task_a,task_b,task_c]
     
     
