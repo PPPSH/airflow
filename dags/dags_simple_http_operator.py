@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.providers.http.operators.http import SimpleHttpOperator
-from airflow.operators import task
+from airflow.decorators import task
 import pendulum
 
 
