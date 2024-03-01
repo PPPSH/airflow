@@ -10,7 +10,7 @@ with DAG(
     catchup=False
 ) as dag : 
     
-    def insrt_postgres(ip, port, dbname, user, passwd, ** kwargs):
+    def insrt_postgres(ip, port, dbname, user, passwd, **kwargs):
         import psycopg2
         from contextlib import closing
         
