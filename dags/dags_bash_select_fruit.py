@@ -16,7 +16,8 @@ with DAG (
     )
     
     t2_avocado = BashOperator(
-        task_id = "/opt/airflow/plugins/shell/select_fruit.sh AVOCADO"
+        task_id = "t2_avocado"
+        bash_command="/opt/airflow/plugins/shell/select_fruit.sh AVOCADO"
     )
     
     t1_orange >> t2_avocado
