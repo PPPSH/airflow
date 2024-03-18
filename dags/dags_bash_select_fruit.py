@@ -1,26 +1,23 @@
- 
-from airflow import DAG 
+from airflow import DAG
+
+from airflow.operators.bash import BashOperator
 import datetime
 import pendulum
-from airflow.operators.bash import BashOperator
- 
-with DAG(
-    dag_id="dags_bash_select_fruit", #airflow에서 보여지는 화면, 파일명이랑 DagID랑 일치하는게 좋음 
-    schedule="10 0 * * *", # 분/시/일/월/요일
-    
-    start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
-    catchup=False # 시작일부터 돌릴것이냐(누락본 일자 다 돌릴것이냐)
-    
+
+with DAG (
+    dag_id = "dags_bash_select_fruit",
+    schedule= "0 0 * * *",
+    start_date= pendulum.datetime(2024,3,1 , tz="Asia/Seoul"),
+    catchup= False
 ) as dag:
     
-    t1_orage = BashOperator(
-        task_id ="t1_orage",
-        bash_command="/opt/airflow/plugins/shell/select_fruit.sh ORAGE",
+    t1_orange = BashOperator(
+        task_id = "t1_orage",
+        bash_command="/opt/airflow/plugins/shell/select_fruit.sh ORANGE"
     )
     
     t2_avocado = BashOperator(
-        task_id ="t2_avocado",
-        bash_command="/opt/airflow/plugins/shell/select_fruit.sh AVOCADO",
+        task_id = "/opt/airflow/plugins/shell/select_fruit.sh AVOCADO"
     )
     
-    t1_orage >> t2_avocado
+    t1_orange >> t2_avocado
