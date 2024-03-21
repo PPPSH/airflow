@@ -21,7 +21,7 @@ with DAG (
         result_lst = ['Success','Fail']
         resulted = random.choice(result_lst)
         
-        if resulted =='Sucess' :
+        if resulted =='Success' :
             return 'next_task'
         elif resulted =='Fail':
             return 'send_email_task'
