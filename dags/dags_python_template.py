@@ -24,7 +24,7 @@ with DAG(
     
     @task(task_id = 'python_t2')
     def python_function2(**kwargs):
-        print(**kwargs)
+        print(kwargs)
         print('ds: '+kwargs['ds'])
         print('ts: ' + kwargs['ts'])
         print('data_interval_start: ' + str(kwargs['data_interval_start']))
