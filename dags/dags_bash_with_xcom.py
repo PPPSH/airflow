@@ -10,12 +10,12 @@ with DAG(
     catchup=False
 ) as dag:
     bash_push = BashOperator(
-    task_id='bash_push',
-    bash_command="echo START && "
-                 "echo XCOM_PUSHED "
-                 "{{ ti.xcom_push(key='bash_pushed',value='first_bash_message') }} && "
-                 "echo COMPLETE" , 
-    xcom_push =True
+        task_id='bash_push',
+        bash_command="echo START && "
+                    "echo XCOM_PUSHED "
+                    "{{ ti.xcom_push(key='bash_pushed',value='first_bash_message') }} && "
+                    "echo COMPLETE" , 
+        do_xcom_push =True
     )
 
     bash_pull = BashOperator(
