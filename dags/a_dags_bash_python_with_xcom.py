@@ -14,7 +14,8 @@ with DAG(
     bash_push =BashOperator(
         task_id = 'bash_push',
         bash_command='echo start PUSH_BY_BASH '
-                    '{{ti.xcome.push(key="key1", value=200)}}'
+                    '{{ti.xcom_push(key="key1", value=200)}}'
+                    'echo Complete'
     )
     
     bash_pull = BashOperator(
