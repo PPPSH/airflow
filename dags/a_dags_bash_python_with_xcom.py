@@ -25,4 +25,4 @@ with DAG(
         bash_command= 'echo val is $val1'
     )
     
-    bash_push >> bash_push
+    bash_push >> bash_pull
