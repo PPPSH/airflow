@@ -11,19 +11,22 @@ with DAG(
     catchup=False
 ) as dag:
     
-    bash_push =BashOperator(
-        task_id = 'bash_push',
-        bash_command='echo start PUSH_BY_BASH '
-                    '{{ti.xcom_push(key="key1", value=200)}}'
-                    'echo Complete'
+    bash_push = BashOperator(
+        tast_id = 'bash_push',
+        bash_command="echo push Start"
+                    "{{ti.xcom_push(key='key1', value='value1')}} && "
+                    "{{ti.xcom_push(key='key2', value='value2')}} &&"
+                    "echo push Finish"
     )
     
     bash_pull = BashOperator(
         task_id = 'bash_pull',
         env = {
-            'val1' : '{{ti.xcom_pull(key="key1")}}'
-        } ,
-        bash_command= 'echo val is $val1'
+            "key1": "{{ti.xcom_pull(key='key1')}}",
+            "key2": "{{ti.xcom_pull(key='key2')}}",
+            "return": "{{ti.xcom_pull(task_ids ='bash_push')}}"
+        },
+        bash_command="echo result1 is $key1 and key2 is $key2 and return is $return"
     )
     
     bash_push >> bash_pull
