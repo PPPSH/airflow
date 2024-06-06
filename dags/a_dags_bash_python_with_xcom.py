@@ -1,7 +1,6 @@
 from airflow import DAG
 import pendulum
 from airflow.decorators import task
-from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
 with DAG(
@@ -11,20 +10,16 @@ with DAG(
     catchup=False
 ) as dag:
     
-    bash_push = BashOperator(
-        task_id = 'bash_push',
-        bash_command="echo push Start"
-                    "{{ti.xcom_push(key='key1', value='value1')}} && "
-                    "echo push Finish"
-    )
-    
-    bash_pull = BashOperator(
-        task_id = 'bash_pull',
-        env = {
-            "key1": "{{ti.xcom_pull(key='key1')}}",
-            "return": "{{ti.xcom_pull(task_ids ='bash_push')}}"
-        },
-        bash_command="echo result1 is $key1 and return is $return"
-    )
-    
-    bash_push >> bash_pull
+    @task(task_id = "python_xcom_push")
+    def python_push_xcom(** kwargs):
+        ti = kwargs['ti']
+        ti.xcom_push(key = "key1", value = "val1")
+        ti.xcom_push(key = "key2", value = "val2")
+
+    @task(task_id = "pyton_xcom_pull")
+    def python_xcom_pull(**kwargs):
+        ti = kwargs['ti']
+        key1 = ti.xcom_pull(key="key1")
+        key2 = ti.xcom_pull(key="key2")
+
+    python_push_xcom() >> python_xcom_pull()
