@@ -19,7 +19,7 @@ with DAG(
         task_id = 'send_email_task',
         to="dbtn751@naver.com",
         subject= "{{data_interval_end.in_timezone('Asia/Seoul') | ds}} 배치 처리결과" , 
-        html_content= "{{data_interval_end.in_timezone('Asia/seoul') | ds}} 처리 결과는 <br> \
+        html_content= "{{data_interval_end.in_timezone('Asia/Seoul') | ds}} 처리 결과는 <br> \
                         {{ti.xcom_pull(task_ids = 'check_result_task')}} 입니다."
     )
 
