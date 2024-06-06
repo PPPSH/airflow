@@ -15,7 +15,6 @@ with DAG(
         task_id = 'bash_push',
         bash_command="echo push Start"
                     "{{ti.xcom_push(key='key1', value='value1')}} && "
-                    "{{ti.xcom_push(key='key2', value='value2')}} && "
                     "echo push Finish"
     )
     
@@ -23,10 +22,9 @@ with DAG(
         task_id = 'bash_pull',
         env = {
             "key1": "{{ti.xcom_pull(key='key1')}}",
-            "key2": "{{ti.xcom_pull(key='key2')}}",
             "return": "{{ti.xcom_pull(task_ids ='bash_push')}}"
         },
-        bash_command="echo result1 is $key1 and key2 is $key2 and return is $return"
+        bash_command="echo result1 is $key1 and return is $return"
     )
     
     bash_push >> bash_pull
