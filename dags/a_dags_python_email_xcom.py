@@ -23,4 +23,4 @@ with DAG(
             {{ti.xcom_pull(task_ids='make_result')}} 되었습니다. "
     )
     
-    make_result() >> make_result()
+    make_result() >> mailing_task
