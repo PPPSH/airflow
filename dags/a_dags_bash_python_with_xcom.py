@@ -15,6 +15,7 @@ with DAG(
         from random import choice
         return choice(['Success','Fail'])
     
+<<<<<<< HEAD
     send_email_task = EmailOperator(
         task_id = 'send_email_task',
         to="dbtn751@naver.com",
@@ -24,3 +25,18 @@ with DAG(
     )
 
     create_result() >> send_email_task
+=======
+    bash_push = BashOperator(
+        task_id = 'bash_push',
+        bash_command= "echo start &&"
+                      "{{ti.xcom_push(key='key1', value= ''val)}}" 
+    )
+    
+    bash_pull = BashOperator(
+        task_id = 'bash_pull',
+        env = {
+            'id' : "{{ti.xcom_pull(key='val1')}}"
+        },
+        bash_command= "echo $id"
+    )
+>>>>>>> 9f02bab (dags x-com study1)
