@@ -13,7 +13,7 @@ with DAG(
     @task(task_id = 'make_result')
     def make_result(**kwargs):
         from random import choice
-        return choice['Success','fail']
+        return choice(['Success','fail'])
     
     mailing_task = EmailOperator(
         task_id = 'mailing_task',
