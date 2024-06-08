@@ -18,7 +18,7 @@ with DAG(
     
     bash_tast2 = BashOperator(
         task_id='bash_task2',
-        bash_command='echo var2 is {{var.variable.sample_key}}'
+        bash_command='echo var2 is {{var.value.sample_key}}'
     )
     
     bash_task1 >> bash_tast2
