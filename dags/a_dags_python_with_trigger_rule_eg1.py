@@ -30,3 +30,4 @@ with DAG(
         print('down 정상처리 ')
         
     
+    [bash_upstream_1,python_upstream_1(),python_upstream_2()] >> python_downstream_1()
