@@ -9,16 +9,16 @@ with DAG(
     start_date=pendulum.datetime(2023, 4, 1, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
-    var_value = Variable.get('sample_key')
+    gv = Variable.get('sample_key')
     
-    bash_var_1 = BashOperator(
-    task_id = 'bash_var_1',
-    bash_command='echo variable : {var_value}'
+    bash_task1 = BashOperator(
+        task_id = 'bash_task1',
+        bash_command= f'echo var1 is {gv}'
     )
     
-    bash_var_2 = BashOperator(
-    task_id = 'bash_var_2',
-    bash_command='echo var : {{var.value.sample_key}}'    
+    bash_tast2 = BashOperator(
+        task_id='bash_task2',
+        bash_command='echo var2 is {{var.variable.sample_key}}'
     )
     
-    bash_var_1 >> bash_var_2
+    bash_task1 >> bash_tast2
