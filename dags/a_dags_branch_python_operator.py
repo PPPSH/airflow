@@ -29,7 +29,7 @@ with DAG(
         print(f'selected is : {ti}')
         
     task_1 = PythonOperator(
-        taks_id = 'task_1',
+        task_id = 'task_1',
         op_kwargs= {'selected':'task1'},
         python_callable=common_func
     )
