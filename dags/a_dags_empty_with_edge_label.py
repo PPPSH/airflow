@@ -23,4 +23,4 @@ with DAG(
     def task_2():
         print('task2')
         
-    task_1() >>Label('1과 2사이') >> task_2
+    task_1() >>Label('1과 2사이') >> task_2()
