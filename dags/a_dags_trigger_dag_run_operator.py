@@ -16,7 +16,7 @@ with DAG (
     
     trigger_dag_task = TriggerDagRunOperator(
         task_id = 'trigger_dag_task',
-        trigger_dag_id='dags_bash_operator',
+        trigger_dag_id='a_dags_python_bashoperator',
         trigger_run_id= None,
         execution_date='{{data_interval_start}}',
         reset_dag_run= True , 
