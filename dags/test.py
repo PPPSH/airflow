@@ -19,4 +19,4 @@ with DAG(
         bash_command= 'echo Success @ '
     )
 
-    bash_task >> bash_task2
+    bash_task1 >> bash_task2
