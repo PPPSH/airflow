@@ -8,7 +8,7 @@ import random
 default_args = {
     'owner': 'pppsh',
     'depends_on_past': False,
-    'start_date': datetime(2024, 9, 1),  # 백필을 위해 과거 날짜로 설정
+    'start_date': datetime(2024, 9, 18),  # 백필을 위해 과거 날짜로 설정
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
@@ -21,7 +21,7 @@ dag = DAG(
     default_args=default_args,
     description='Generates a txt file with id, date, and random number every minute',
     schedule_interval='*/1 * * * *',  # 매 분 실행
-    catchup=True  # 백필을 위한 옵션
+    catchup=False  # 백필을 위한 옵션
 )
 
 # Task 1: 텍스트 파일 생성 함수
@@ -29,7 +29,7 @@ def generate_txt(**kwargs):
     execution_time = kwargs['execution_date'].strftime('%Y-%m-%d-%H-%M')  # 파일명에 시간을 포함하도록 수정
     date = kwargs['execution_date'].strftime('%Y-%m-%d')  # 파일 내 일자 기록
     
-    file_name = f"/Users/ben/Desktop/test1/data_{execution_time}.txt"
+    file_name = f"/opt/airflow/files/test1/data_{execution_time}.txt"
     
     # id, date, random_number 데이터를 생성하여 텍스트 파일로 저장
     with open(file_name, 'w') as f:
