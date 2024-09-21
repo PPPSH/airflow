@@ -5,9 +5,9 @@ from airflow.operators.python import BranchPythonOperator
 
 with DAG(
     dag_id='dags_branch_python_operator',
-    start_date=pendulum.datetime(2023,4,1, tz='Asia/Seoul'), 
-    schedule='0 1 * * *',
-    catchup=False
+    start_date=pendulum.datetime(2024,9,20, tz='Asia/Seoul'), 
+    schedule='0 5 * * *',
+    catchup= True
 ) as dag:
     def select_random():
         import random
