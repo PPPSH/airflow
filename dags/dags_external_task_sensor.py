@@ -8,7 +8,7 @@ with DAG(
     dag_id='dags_external_task_sensor',
     start_date=pendulum.datetime(2024,9,20, tz='Asia/Seoul'), 
     schedule='0 7 * * *',
-    catchup=False
+    catchup=True
 ) as dag:
     external_task_sensor_a = ExternalTaskSensor(
         task_id='external_task_sensor_a',
